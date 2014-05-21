@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+
+    <title>Omega 4</title>
+
+    <!-- Required stylesheet -->
+    <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+    <!-- Extension CSS files go here. Remove or add as needed. -->
+    <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+    <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+    <!-- Style theme. More available in /themes/style/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/style/neon.css">
+
+    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+    <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
+
+    <!-- Basic black and white print styles -->
+    <link rel="stylesheet" media="print" href="core/print.css">
+    <link rel="stylesheet" media="screen" href="js/prism.css">
+
+    <style>
+        .home.slide {
+            height: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .home{
+            background-image: url('img/1000.png');
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+
+        }
+    </style>
+    <!-- Required Modernizr file -->
+    <script src="js/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide home">
+    <h1>OMEGA <strong>4</strong></h1>
+</section>
+
+<section class="slide">
+    <h2>Que esperar de ésta charla?</h2>
+
+    <ul>
+        <li>Grunt.js</li>
+        <li>SASS/Compass</li>
+        <li>Bower</li>
+        <li>Make</li>
+        <li>jshint</li>
+        <li>Documentación</li>
+        <li>Sistemas de Grid</li>
+        <li>SMACSS</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Que esperar de ésta charla?</h2>
+
+    <ul>
+        <li>Drush</li>
+        <li>Layouts</li>
+        <li>Entorno de desarrollo</li>
+        <li>template.php y el sistema de discovering de Omega</li>
+        <li>UI de configuración</li>
+        <li>Omega y Panels</li>
+        <li>Omega y Context</li>
+    </ul>
+</section>
+
+
+<section class="slide">
+    <h2>Un poco de historia (a lo biblico)</h2>
+
+    <h3>Y himerus creó Omega 3 y vio que era bueno.</h3>
+    <ul>
+        <li>Su mayor contribución fue la interfaz visual de configuración
+            de layouts. Esto le dio mucha fama.
+        </li>
+        <li>Pero era a menudo difícil de controlar y no tenía prácticamente
+            documentación.
+        </li>
+        <li>himerus durante dos años ha dedicado su tiempo a otras cosas y no ha contribuido mas a Omega, aunque fuera el creador inicial.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Un poco de historia</h2>
+
+    <h3>Y fubhy vio que Omega podía ser mejor y creó Omega 4</h3>
+    <ul>
+
+        <li>En Ω3 fubhy contribuyó mucho y viendo que himerus estaba un
+            poco desaparecido, decide ir solo a por la versión 4 pero
+            cambiando bastante la filosofia inicial de Omega:
+
+            <ul>
+                <li>Ya no habria una interfaz gráfica para gestionar los layout.</li>
+                <li>Introduciria lo último en stack de tecnologias y paradigmas.</li>
+                <li>Daría por hecho que los themers no son meros maquetadores.</li>
+            </ul>
+        </li>
+
+    </ul>
+
+</section>
+
+<section class="slide">
+    <h2>Un poco de historia</h2>
+
+    <h3>Y himerus y fuhby tendrían un follón</h3>
+    <ul>
+        <li>himerus vuelve después de 2 años de inactividad y a pedido de quienes usaran omega 3 y no se sentían comodos con un omega 4 tan avanzado, fue y creó la rama de la versión 5.</li>
+        <li>Esto a fubhy no le sentó muy bien porque el creador pasaba del hijo prodigo como si el no contara y fue y abrió un issue en drupal.org en el que hace mas de una semana vienen dandose caña sin parar.</li>
+    </ul>
+</section>
+<section class="slide">
+    <h2>Futuro</h2>
+
+    <p>Esto último parece que va a decantar en un fork en el que va a haber un Ω que va a ir mas por el lado de lo que fuera Ω3 y otra rama que irá por lo que actualmente es Ω4.</p>
+
+    <p>Esto es malo? No. Vamos a tener Las dos filosofias de Omega en Drupal 8. De hecho parece que es fubhy el que va a crear el fork y lo va a llamar "KHAN"</p>
+
+    <p>Las novedades que traiga khan/Omega 5 dependerán mucho de como evolucione D8, por lo que de momento no se pronuncian.</p>
+</section>
+
+
+<section class="slide">
+    <h1>Comenzamos</h1>
+</section>
+
+<section class="slide">
+    <h3>Crear un subtheme</h3>
+
+    <p>Omega como buen theme base tiene un comando drush para crear un subtheme:</p>
+
+    <pre class="bold">drush omega-subtheme NUEVOTHEME</pre>
+
+    <div class="slide">
+        <h3>Ahora bower o Make</h3>
+        <pre>
+bower install
+
+#o pueden usar make
+drush make libraries.make --no-core --contrib-destination=.
+        </pre>
+    </div>
+</section>
+
+<section class="slide">
+    <h1>Cosa de una sola vez</h1>
+</section>
+
+<section class="slide">
+    <p>Necesitas instalar sass, compass, gemas extra y un par de cosas mas en tu sistema para que todo funcione.</p>
+
+    <p>Por eso Omega viene con bundler.</p>
+
+    <pre>sudo gem install bundler && bundle install</pre>
+
+    <div class="nota">
+        No hace falta lanzar el comando de bundler mas que la primera vez. El software que se instale lo hace en todo el sistema, no en el theme creado.
+    </div>
+</section>
+
+<section class="slide">
+    <h1>SASS</h1>
+</section>
+
+<section class="slide">
+    <h2>rgbapng</h2>
+    <ul>
+        <li class="slide">
+            Es un polyfill para colores con canal alpha.
+        </li>
+        <li class="slide">Básicamente "solo" es útil para IE8-</li>
+    </ul>
+
+    <div class="slide">
+        Solución muy mala:
+        <div class="slide">
+<pre>
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#d8ffffff', endColorstr='#d8ffffff');
+</pre>
+        </div>
+    </div>
+
+    <div class="slide">
+        Solución simplemente mala:
+        usar un png transparente que represente el color
+
+
+<pre class="example-code"><code class="language-scss">
+body{
+    background: url('../img/red-a-0.75.png');
+}
+</code>
+</pre>
+    </div>
+
+</section>
+
+<section class="slide">
+    <h2>O podemos usar rgbpng</h2>
+<pre class="example-code"><code class="language-scss">
+body{
+    @include rgba-background(rgba(#FF0000, .75));
+}
+</code>
+</pre>
+
+    <div class="slide">
+        <h2>Que genera:</h2>
+
+<pre class="example-code"><code class="language-scss">
+body {
+    background: url('../img/rgbapng/ff0000bf-5.png');
+    background: rgba(255, 0, 0, 0.75);
+}
+</code>
+</pre>
+
+    </div>
+</section>
+
+
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<section class="slide">
+    <h2>sass-globbing</h2>
+
+    <p>Esta gema nos saca de una situación bastante recurrente y molesta.
+        Ya no tenemos que andar puteando cuando creamos un nuevo archivo, compilamos vamos al navegador no vemos nada y terminamos cayendo en la cuenta que como no lo habiamos incluido en el archivo maestro ese nuevo archivo no se va a renderizar en la vida.</p>
+
+    <div>
+        Es una pequeña perla que le viene faltando a sass o compass. Te deja importar todos los partials .scss de un directorio mediante la sintaxis:
+<pre class="example-code"><code class="language-scss">
+@import "components/*"
+</code>
+</pre>
+
+        O Importar todo lo que haya en todos los subdirectoios recursivamente:
+
+<pre class="example-code"><code class="language-scss">
+@import "components/**/*"
+</code>
+</pre>
+    </div>
+
+</section>
+
+<section class="slide">
+    <h2>sass-globbing</h2>
+    <p>Con lo que pasamos de tener interminables listas de includes como estas:</p>
+
+<pre class="example-code"><code class="language-scss">
+@import "base/forms";
+@import "base/icons";
+@import "base/layouts";
+@import "base/lists";
+@import "base/tables";
+@import "base/typography";
+
+@import "components/blocks";
+@import "components/breadcrumb";
+@import "components/contact-data";
+@import "components/tables";
+@import "components/tabs";
+@import "components/views/grid";
+</code>
+</pre>
+
+</section>
+
+<section class="slide">
+    <h2>sass-globbing</h2>
+<p>A esto:</p>
+<pre class="example-code"><code class="language-scss">
+@import "base/**/*";
+@import "components/**/*";
+</code>
+</pre>
+
+</section>
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+<!-- //////////////////////////////////////////////////////////-->
+
+
+<section class="slide">
+    <h2>breakpoint</h2>
+
+    <p>Omega no usa media queries, usa la gema breakpoint que está mucho mas buena.</p>
+
+    <p>Las media queries son un poco difíciles de tratar a veces. No son semánticas y por ahí te tenés que poner a pensar si la que estas tocando es la que deberías. Bueno este plugin hace todo eso mucho mas fácil.</p>
+</section>
+
+
+<section class="slide">
+    <h2>Para usarlas solo hay dos cosas que tenes que hacer:</h2>
+
+
+    <div class="slide">
+        <h3>1: Definir variables con las medidas que necesitas (aka "puntos de corte"):</h3>
+<pre class="example-code"><code class="language-scss">
+$between: 100px 479px;
+$mobile: 480px;
+$tablet: 768px;
+$escritorio: 1280px;
+</code>
+</pre>
+    </div>
+</section>
+
+<!--<section class="slide">-->
+<!--Este no es un paso. Solo son colores para poder mostrar el ejemplo de lo que estamos haciendo-->
+<!--<pre class="example-code"><code class="language-scss">-->
+<!--$color-vodafone: red;-->
+<!--$color-orange: orange;-->
+<!--$color-movistar: green;-->
+<!--$color-yoigo: purple;-->
+<!--</code>-->
+<!--</pre>-->
+<!--</section>-->
+
+<section class="slide">
+
+    <div>
+        <h3>2: Usar el mixin breakpoint() en lugar de @media:</h3>
+<pre class="example-code"><code class="language-scss">
+body {
+    background: yellow;
+
+    @include breakpoint($between) {
+        background: $color-movistar;
+    }
+
+    @include breakpoint($mobile) {
+        background: $color-vodafone;
+    }
+
+    @include breakpoint($tablet) {
+        background: $color-orange;
+    }
+
+    @include breakpoint($escritorio) {
+        background: $color-yoigo;
+    }
+}
+</code>
+</pre>
+    </div>
+
+</section>
+
+<section class="slide">
+    <h2>Hay mas cosas</h2>
+    <p>Hay un par de plugins compass mas en omega como "toolkit" y "compass-normalize" pero no son muy relevantes para esta charla.</p>
+</section>
+
+<section class="slide">
+    <h1>Drush</h1>
+</section>
+
+<section class="slide">
+    <h2>Drush</h2>
+
+    <ul>
+        <li class="slide">omega-export (oexp) Mete toda la configuración del theme en el archivo <strong>.info</strong>.</li>
+        <li class="slide">omega-revert (orev) Deshace los cambios de la configuración del theme.</li>
+        <li class="slide">omega-guard (ogrd) Pone a correr copass + livereload.</li>
+        <li class="slide">omega-subtheme (osub) Crea un subtheme.</li>
+        <li class="slide">omega-wizard (owiz) Crea un subtheme pero te hincha a preguntas.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>drush omega-guard</h2>
+    <ul>
+        <li class="slide">Observa los sass para compilarlos</li>
+        <li class="slide">Abre un canal de livereload</li>
+    </ul>
+</section>
+
+<section class="slide">
+        <h2>livereload?</h2>
+
+        <p>Es un programa que abre un canal entre la aplicación misma y un js inyectado en la página que estamos maquetando.</p>
+
+    <p class="slide">Cuando tocamos un archivo SASS, livereload es capaz de enviar los css compilados directamente al browser y el cliente js se encarga del resto.</p>
+</section>
+
+<sections class="slide">
+    <h2>Livereload: ¿ventajas?</h2>
+
+        <p class="slide">Vas RAPIDO.</p>
+
+        <p class="slide">No tenes que recargar la página cada vez que quieras ver como queda lo que acabas de cambiar.</p>
+
+    <p class="slide">
+        Al no tener que recargar, podes hacer mas fácilmente cosas como maquetar un modal que aparece después de hacer ciertas acciones en lugar de tener que repetir esos pasos cada vez que refrescas.
+    </p>
+
+    <div class="slide">
+        Uso:
+<pre>
+drush omega-guard [tutheme]
+</pre>
+        <p>Ya está. livereload viene configurado para funcionar sin mas.</p>
+    </div>
+</sections>
+
+<sections class="slide">
+    <h1>template.php</h1>
+</sections>
+
+<section class="slide">
+    <h2>Separando las manzanas y las peras</h2>
+
+    <p>Problema típico: template.php es enorme.</p>
+
+    <p>Omega 4 da una de las soluciones mas elegantes que he visto en mucho tiempo. Separa lo repetitivo :)</p>
+</section>
+
+<section class="slide">
+    <h2>¿Qué se repite mas en template.php?</h2>
+
+    <ul>
+        <li class="slide">HOOK_process()</li>
+        <li class="slide">HOOK_preprocess()</li>
+        <li class="slide">HOOK_THEMENAME()</li>
+    </ul>
+</section>
+
+
+<section class="slide">
+    <h2>Por cada uno de los hook se ha creado un directorio</h2>
+    <img src="img/a.jpg" style="width: 100%; height: auto"/>
+</section>
+
+<section class="slide">
+    <h2>Uso</h2>
+    <p>Dentro de cada uno de estos directorios tenés que crear un archivo para cada hook que pretendas usar usando una nomenclatura. Ej: <strong>HOOK-preprocess.inc</strong></p>
+
+    <div class="slide">
+        <p>Y dentro del archivo solo pones el código del hook:</p>
+
+<pre class="example-code"><code class="language-php">
+function drupixma_preprocess_block(&$vars) {
+    $vars['block']->subject = "bla bla bla";
+}
+</code>
+</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <h2>Ventajas?</h2>
+    <ul>
+        <li class="slide">Tenés centralizados todos los preprocess/process/theme en su directorio.</li>
+        <li class="slide">Lo anterior hace muy fácil encontrar un hook.</li>
+        <li class="slide">Son mas portables.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h1>Layouts</h1>
+</section>
+
+
+<section class="slide">
+    <h2>What if</h2>
+    <p class="slide">¿Y si pudieramos tratar a los layout como un recurso mas?</p>
+    <p class="slide">¿Empaquetarlos?</p>
+    <p class="slide">¿Separarlos del resto de un theme?</p>
+    <p class="slide">¿Moverlos a otros proyectos?</p>
+</section>
+
+
+<section class="slide">
+    <h2>Omega 4 wins</h2>
+
+    <p>Implementa un sistema de layouts válido <strong>para él mismo</strong>, pero a su vez también para <strong>Panels y Context</strong>.</p>
+
+    <p>Y lo anterior marca un punto de inflexión:</p>
+    <p class="slide">Se pueden empaquetar y mover a otros themes (o módulos llenos de layouts).</p>
+    <p class="slide">Y lo mejor de todo es que <strong>NO</strong> dependen de Panels ni de Context.</p>
+</section>
+
+<section class="slide">
+    <h2>¿Como los creamos?</h2>
+    <pre>
+name = Landing
+description = Tipo portada landing.
+preview = preview.png
+template = landing-layout
+
+regions[one] = One
+regions[two] = Two
+regions[three] = Three
+
+stylesheets[all][] = css/landing.layout.css
+scripts[] = js/landing.layout.js
+</pre>
+</section>
+
+<section class="slide">
+    <h1>Usar layouts</h1>
+</section>
+
+<section class="slide">
+    <h2>A lo fácil (pero basico)</h2>
+    <img src="img/layout-via-omega.jpg" alt=""/>
+</section>
+
+<section class="slide">
+    <p>Pros:</p>
+
+    <p class="slide">No puede ser mas simple.</p>
+    <p class="slide">Se puede cambiar el layout activo mediante HOOK_omega_layout_alter()</p>
+
+    <p>Contras:</p>
+
+    <p class="slide">Solo podés seleccionar un layout activo y no podes cambiarlo dinamicamente como con context o panels.</p>
+
+</section>
+
+<section class="slide">
+    <h2>A lo Context</h2>
+
+    <p>Solo hay que habilitar un módulo que hace de puente: context_omega</p>
+</section>
+
+<section class="slide">
+    <h2>Integración en Context</h2>
+    <img src="img/context-layouts.jpg" alt=""/>
+</section>
+
+
+<section class="slide">
+    <h2>A lo Panels</h2>
+    <p class="slide">Para ello usamos panels everywhere (PE)</p>
+    <p class="slide">Los layout de Omega son compatibles con PE</p>
+</section>
+
+<section class="slide">
+    <h2>Sistemas de grids</h2>
+    <ul>
+        <li>Omega es agnóstico en este sentido</li>
+        <li>Trae de serie Susy y Singularitygs</li>
+        <li>Se pueden añadir mas (por ejemplo el grid system de bootstrap)</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2>Bower</h2>
+    <p>Es un gestor de dependencias para la capa frontal <span class="slide">(de la familia de npm o composer).</span></p>
+    <p class="slide">Cada día se usa mas porque hacía falta.</p>
+    <p class="slide">Creado por twitter.</p>
+    <p class="slide">Su uso en omega es muy simple: <strong>bower install</strong></p>
+</section>
+
+<section class="slide">
+    <h3>Ejemplo del archivo de conf</h3>
+<pre>
+  "name": "omega",
+  "versión": "1.0.0",
+  "dependencies": {
+    "respond": "fubhy/respond",
+    "selectivizr": "fubhy/selectivizr",
+    "html5shiv": "fubhy/html5shiv",
+    "matchmedia": "fubhy/matchmedia",
+    "pie": "fubhy/pie"
+  }
+}
+</pre>
+</section>
+
+<section class="slide">
+    <h3>Make como alternativa a bower</h3>
+
+    <p>Como el autor de omega tenía miedo de quedarse corto con bower, decidió poner make como un gestor de dependencias alternativo.</p>
+
+    <pre>drush make libraries.make --no-core --contrib-destination=.</pre>
+</section>
+
+<section class="slide">
+    <h1>Grunt</h1>
+</section>
+
+<section class="slide">
+    <h2>Grunt</h2>
+    <p>Es un task manager usado prácticamente por todos los proyectos modernos.</p>
+    <div class="slide">
+        <p>Sirve para cualquier tarea mecánica:</p>
+        <ul>
+            <li class="slide">Compilar sass</li>
+            <li class="slide">Hacer verificaciones con jshint</li>
+            <li class="slide">Crear backups parciales o totales</li>
+            <li class="slide">Y mas cosas</li>
+        </ul>
+    </div>
+</section>
+
+<section class="slide">
+    <h2>Que trae de serie?</h2>
+
+    <div class="slide">
+        <h3>Viene con un task definido que:</h3>
+        <ul>
+            <li>Comprime y ofusca los archivos js</li>
+            <li>Compila los archivos sass en su versión de producción</li>
+            <li>Ejecuta jshint para autitar el js</li>
+        </ul>
+    </div>
+</section>
+
+<section class="slide">
+    <h2>Tambien se pueden crear mas task</h2>
+    <h4>Ejemplo practico:</h4>
+    <p>Extraigo imágenes de un PSD pero sin pensar en la optimización de las imágenes</p>
+    <p>Quiero poder tirar un comando en consola que genere una versión optimizada de todas las imágenes extraídas</p>
+</section>
+
+
+<section class="slide">
+    <h3>Solución</h3>
+    <p>Para ello solo necesito crear un nuevo task y usar un plugin llamado <strong>imagemin</strong></p>
+</section>
+
+<section class="slide">
+    <pre>
+imagemin: {
+    dist: {
+        files: [
+          {
+            expand: true,
+            cwd: 'images/src',
+            src: ['**/*.{png,jpg,gif}'],
+            dest: 'images/dist'
+          }
+        ]
+    }
+},
+</pre>
+    <p>Y aprovecharla mediante un nuevo task:</p>
+
+<pre>
+grunt.registerTask('optimizar', [
+    'imagemin:dist'
+]);
+</pre>
+</section>
+
+<section class="slide">
+    <h2>Mas cosas</h2>
+    <p>El diseñador quiere auditar las imágenes que vamos usando del diseño original.</p>
+    <p>No sabe usar GIT, ni usa un IDE, ni le interesa andar navegando por los archivos del proyecto.</p>
+    <p>Quiere que en lo posible le pasemos un zip con las imágenes.</p>
+</section>
+
+<section class="slide">
+    <h3>Solución</h3>
+    <p>Pues usamos un nuevo plugin llamado <strong>compress</strong></p>
+
+    <p>Y un nuevo task que aproveche la generación de imágenes del plugin anterior, y cuando acabe que comprima el directorio de imágenes:</p>
+</section>
+
+<section class="slide">
+    <pre>
+compress: {
+  main: {
+    options: {
+      archive: 'disenyador.tgz'
+    },
+    files: [
+      {src: ['images/dist/**/*']}
+    ]
+  }
+},
+    </pre>
+<pre>
+grunt.registerTask('imagenes-y-comprimir', [
+    'imagemin:dist',
+    'compress:main'
+]);
+</pre>
+</section>
+
+<section class="slide">
+<h2>FIN</h2>
+    <h1>¿Preguntas?</h1>
+</section>
+
+<!-- End slides. -->
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+
+<!-- deck.status snippet -->
+<p class="deck-status" aria-role="status">
+    <span class="deck-status-current"></span>
+    /
+    <span class="deck-status-total"></span>
+</p>
+
+<!-- End extension snippets. -->
+</div>
+
+<!-- Required JS files. -->
+<script src="js/jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+<script src="js/style-guide.js"></script>
+<script src="js/prism.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+    $(function () {
+        $.deck('.slide');
+    });
+</script>
+</body>
+</html>

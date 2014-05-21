@@ -1,0 +1,7 @@
+body.node-123 {
+    background: #000000;
+}
+
+body.node-123 .main {
+    background: red;
+}
